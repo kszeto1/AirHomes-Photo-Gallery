@@ -1,15 +1,16 @@
 {
-  "name": "",
+  "name": "fec-airbnb-photo-gallery",
   "version": "",
-  "description": "",
-  "author": "",
+  "description": "Photo Gallery Component",
+  "author": "Kenny Szeto",
   "license": "",
   "engines": {
     "node": ">=6.13.0"
   },
   "scripts": {
     "start": "nodemon server/index.js",
-    "react-dev": "webpack -d --watch"
+    "react-dev": "webpack -d --watch",
+    "seed": "node database/seed.js"
   },
   "dependencies": {
     "body-parser": "^1.19.0",
