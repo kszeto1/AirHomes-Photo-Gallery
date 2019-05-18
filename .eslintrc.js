@@ -1,5 +1,6 @@
 module.exports = {
   env: {
+    jest: true,
     browser: true,
     es6: true,
     node: true,
@@ -20,5 +21,8 @@ module.exports = {
     'react',
   ],
   rules: {
+    "react/prefer-stateless-function": [0, { "ignorePureComponents": true }],
+    "no-console": 0,
+    "allowImplicit": false,
   },
 };
