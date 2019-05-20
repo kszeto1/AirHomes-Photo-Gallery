@@ -21,8 +21,11 @@ module.exports = {
     'react',
   ],
   rules: {
+    "import/extensions": {
+      jsx: "always",
+    },
     "react/prefer-stateless-function": [0, { "ignorePureComponents": true }],
     "no-console": 0,
-    "allowImplicit": false,
+    "arrow-body-style": ["error", "always"],
   },
 };
