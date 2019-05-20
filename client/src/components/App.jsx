@@ -35,7 +35,7 @@ class App extends React.Component {
     const { hasLoaded } = this.state;
 
     if (hasLoaded) {
-      // console.log({ images });
+      // TODO: randomListing not same listing every time
       const randomListing = Math.floor(Math.random() * 100);
       return (<ImageGrid images={images} />);
     }

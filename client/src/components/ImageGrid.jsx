@@ -21,6 +21,34 @@ const Img = styled.img`
   height: 100%;
   object-fit: cover;
   display: block; 
+  border: solid 1px black;
+`;
+
+const GridImage2 = styled.div`
+  grid-column_start: 3,
+  grid-column-end: 4,
+  grid-row-start: 1;
+  grid-row-end: 2;
+`;
+
+const GridImage3 = styled.div`
+  grid-column-start: 3;
+  grid-column-end: 4;
+  grid-row-start: 2;
+  grid-row-end: 3;
+`;
+
+const GridImage4 = styled.div`
+  grid-column-start: 4;
+  grid-column-end: 5;
+  grid-row-start: 1;
+  grid-row-end: 2;
+`;
+const GridImage5 = styled.div`
+  grid-column-start: 4;
+  grid-column-end: 5;
+  grid-row-start: 2;
+  grid-row-end: 3;
 `;
 
 const ImageGrid = (props) => {
@@ -30,6 +58,18 @@ const ImageGrid = (props) => {
       <MainImage>
         <Img src={props.images[0][0].imageUrl[0]} />
       </MainImage>
+      <GridImage2>
+        <Img src={props.images[0][0].imageUrl[1]} />
+      </GridImage2>
+      <GridImage3>
+        <Img src={props.images[0][0].imageUrl[2]} />
+      </GridImage3>
+      <GridImage4>
+        <Img src={props.images[0][0].imageUrl[3]} />
+      </GridImage4>
+      <GridImage5>
+        <Img src={props.images[0][0].imageUrl[4]} />
+      </GridImage5>
     </Grid>
   );
 };
