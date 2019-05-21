@@ -18,8 +18,6 @@ module.exports = {
         query: {
           presets: ['@babel/react', '@babel/env'],
         },
-        plugins: ['babel-plugin-styled-components'],
-
       },
     ],
   },
