@@ -11,9 +11,7 @@ const Grid = styled.div`
 
   &:hover div {
     opacity: 0.5;
-  } 
-  
-  
+  }
 `;
 
 const MainImage = styled.div`
@@ -28,9 +26,6 @@ const MainImage = styled.div`
   ${Grid}:hover &:hover {
     opacity: 1;
   }
-  
-  
-  
 `;
 
 const Img = styled.img`
@@ -50,8 +45,6 @@ const Img = styled.img`
     transform: scale(1.05);
     opacity: 1;
   }
-  
-
 `;
 
 const GridImage2 = styled.div`
@@ -110,24 +103,23 @@ const GridImage5 = styled.div`
 `;
 
 const ImageGrid = (props) => {
-  console.log(props.images[0]);
-  const randomListing = Math.floor(Math.random() * 100);
+  // const randomListing = Math.floor(Math.random() * 100);
   return (
-    <Grid>
+    <Grid onClick={props.onClick}>
       <MainImage>
-        <Img src={props.images[0][randomListing].imageUrl[0]} />
+        <Img src={props.images[0].imageUrl[0]} />
       </MainImage>
       <GridImage2>
-        <Img src={props.images[0][randomListing].imageUrl[1]} />
+        <Img src={props.images[0].imageUrl[1]} />
       </GridImage2>
       <GridImage3>
-        <Img src={props.images[0][randomListing].imageUrl[2]} />
+        <Img src={props.images[0].imageUrl[2]} />
       </GridImage3>
       <GridImage4>
-        <Img src={props.images[0][randomListing].imageUrl[3]} />
+        <Img src={props.images[0].imageUrl[3]} />
       </GridImage4>
       <GridImage5>
-        <Img src={props.images[0][randomListing].imageUrl[4]} />
+        <Img src={props.images[0].imageUrl[4]} />
       </GridImage5>
     </Grid>
   );

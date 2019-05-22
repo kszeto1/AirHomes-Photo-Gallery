@@ -2,6 +2,7 @@ import React from 'react';
 import Axios from 'axios';
 import styled from 'styled-components';
 import ImageGrid from './ImageGrid.jsx';
+import Carousel from './Carousel.jsx';
 
 class App extends React.Component {
   constructor(props) {
@@ -9,8 +10,10 @@ class App extends React.Component {
     this.state = {
       images: null,
       hasLoaded: false,
+      clickedGrid: false,
     };
     this.getAll = this.getAll.bind(this);
+    this.handleGridClick = this.handleGridClick.bind(this);
   }
 
   componentDidMount() {
@@ -21,7 +24,8 @@ class App extends React.Component {
     Axios.get('/photoGallery')
       .then((response) => {
         const ImgCollection = [];
-        ImgCollection.push(response.data);
+        ImgCollection.push(response.data[0]);
+        console.log(ImgCollection);
         this.setState({ images: ImgCollection, hasLoaded: true });
       })
       .catch((error) => {
@@ -29,32 +33,25 @@ class App extends React.Component {
       });
   }
 
+  handleGridClick(event) {
+    this.setState({ clickedGrid: !(this.state.clickedGrid) });
+    event.preventDefault();
+  }
+
   render() {
     // console.log('state:', this.state.images);
     const { images } = this.state;
     const { hasLoaded } = this.state;
+    const { clickedGrid } = this.state;
 
     if (hasLoaded) {
-      return (<ImageGrid images={images} />);
+      if (!clickedGrid) {
+        return (<ImageGrid images={images} onClick={this.handleGridClick} />);
+      }
+      return (<Carousel onClick={this.handleGridClick} />);
     }
     return (<div />);
   }
 }
 
 export default App;
-
-// <Container>
-//   <Figure>
-//     <MainImg>
-//       <Img src={images[randomListing].imageUrl[0]} alt="" />
-//     </MainImg>
-//     <DoubleImg>
-//       <Img src={images[randomListing].imageUrl[1]} alt="" />
-//       <Img src={images[randomListing].imageUrl[2]} alt="" />
-//     </DoubleImg>
-//     <DoubleImg>
-//       <Img src={images[randomListing].imageUrl[3]} alt="" />
-//       <Img src={images[randomListing].imageUrl[4]} alt="" />
-//     </DoubleImg>
-//   </Figure>
-// </Container>
