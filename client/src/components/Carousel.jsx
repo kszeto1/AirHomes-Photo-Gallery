@@ -27,7 +27,7 @@ const CloseButtonDiv = styled.div`
   -webkit-font-smoothing: antialiased;
   
   
-  background-color: transparent;
+  background-color: inherit;
   position: absolute;
   right: 0px;
   top: 0px;
@@ -52,13 +52,16 @@ const HeaderDiv = styled.div`
 `;
 
 const ArrowAndImageContainer = styled.div`
-  position: relative !important;
   display: table-row !important;
   height: 100% !important;
 `;
 
+const TableRow = styled.div`
+  display: table-row !important;
+`;
+
 const LeftArrowButton = styled.button`
-  cursor: pointer !important;
+  
   position: absolute !important;
   top: 0px !important;
   height: 100% !important;
@@ -85,7 +88,7 @@ const LeftArrowButton = styled.button`
 `;
 
 const RightArrowButton = styled.button`
-  cursor: pointer !important;
+  
   position: absolute !important;
   top: 0px !important;
   height: 100% !important;
@@ -111,22 +114,24 @@ const RightArrowButton = styled.button`
 `;
 
 const PreviousSvg = styled.svg`
+  cursor: pointer !important;
   height: 4.8em;
   width: 4.8em;
   fill: rgb(255, 255, 255);
 `;
 
 const NextSvg = styled.svg`
+  cursor: pointer !important;
   height: 4.8em;
   width: 4.8em;
   fill: rgb(255, 255, 255);
 `;
 const Frame = styled.div`
   display: table !important;
-  table-layout: fixed;
-  width: 100%;
+  width: 100% !important;
   height: 100% !important;
 `;
+
 const Carousel = (props) => {
   return (
     <div>
@@ -140,19 +145,23 @@ const Carousel = (props) => {
       </CloseButtonDiv>
 
       <Frame>
-        <HeaderDiv />
-        <ArrowAndImageContainer>
-          <LeftArrowButton aria-label="Previous">
-            <PreviousSvg viewBox="0 0 18 18" role="presentation" aria-hidden="true" focusable="false">
-              <path d="m13.7 16.29a1 1 0 1 1 -1.42 1.41l-8-8a1 1 0 0 1 0-1.41l8-8a1 1 0 1 1 1.42 1.41l-7.29 7.29z" fillRule="evenodd" />
-            </PreviousSvg>
-          </LeftArrowButton>
-          <RightArrowButton>
-            <NextSvg viewBox="0 0 18 18" role="presentation" aria-hidden="true" focusable="false">
-              <path d="m4.29 1.71a1 1 0 1 1 1.42-1.41l8 8a1 1 0 0 1 0 1.41l-8 8a1 1 0 1 1 -1.42-1.41l7.29-7.29z" fillRule="evenodd" />
-            </NextSvg>
-          </RightArrowButton>
-        </ArrowAndImageContainer>
+        <TableRow>
+          <HeaderDiv />
+        </TableRow>
+        <span>
+          <ArrowAndImageContainer>
+            <LeftArrowButton aria-label="Previous">
+              <PreviousSvg viewBox="0 0 18 18" role="presentation" aria-hidden="true" focusable="false">
+                <path d="m13.7 16.29a1 1 0 1 1 -1.42 1.41l-8-8a1 1 0 0 1 0-1.41l8-8a1 1 0 1 1 1.42 1.41l-7.29 7.29z" fillRule="evenodd" />
+              </PreviousSvg>
+            </LeftArrowButton>
+            <RightArrowButton>
+              <NextSvg viewBox="0 0 18 18" role="presentation" aria-hidden="true" focusable="false">
+                <path d="m4.29 1.71a1 1 0 1 1 1.42-1.41l8 8a1 1 0 0 1 0 1.41l-8 8a1 1 0 1 1 -1.42-1.41l7.29-7.29z" fillRule="evenodd" />
+              </NextSvg>
+            </RightArrowButton>
+          </ArrowAndImageContainer>
+        </span>
       </Frame>
     </div>
   );

@@ -20,7 +20,7 @@ const MainImage = styled.div`
   grid-row-start: 1;
   grid-row-end: 3;
   
-  border: solid 1px black;
+  border: solid 1px #484848;
   overflow: hidden;
 
   ${Grid}:hover &:hover {
@@ -53,7 +53,7 @@ const GridImage2 = styled.div`
   grid-row-start: 1;
   grid-row-end: 2;
 
-  border: solid 1px black;
+  border: solid 1px #484848;
   overflow: hidden;
 
   ${Grid}:hover &:hover {
@@ -67,7 +67,7 @@ const GridImage3 = styled.div`
   grid-row-start: 2;
   grid-row-end: 3;
 
-  border: solid 1px black;
+  border: solid 1px #484848;
   overflow: hidden;
 
   ${Grid}:hover &:hover {
@@ -81,7 +81,7 @@ const GridImage4 = styled.div`
   grid-row-start: 1;
   grid-row-end: 2;
 
-  border: solid 1px black;
+  border: solid 1px #484848;
   overflow: hidden;
 
   ${Grid}:hover &:hover {
@@ -94,7 +94,7 @@ const GridImage5 = styled.div`
   grid-row-start: 2;
   grid-row-end: 3;
 
-  border: solid 1px black;
+  border: solid 1px #484848;
   overflow: hidden;
 
   ${Grid}:hover &:hover {
