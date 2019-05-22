@@ -10,9 +10,11 @@
   "scripts": {
     "start": "nodemon server/index.js",
     "react-dev": "webpack -d --watch",
-    "seed": "node database/seed.js"
+    "seed": "node database/seed.js",
+    "test": "jest"
   },
   "dependencies": {
+    "@babel/runtime": "^7.4.5",
     "axios": "^0.18.0",
     "body-parser": "^1.19.0",
     "express": "^4.16.4",
@@ -25,6 +27,8 @@
   },
   "devDependencies": {
     "@babel/core": "^7.4.4",
+    "@babel/plugin-proposal-class-properties": "^7.4.4",
+    "@babel/plugin-transform-runtime": "^7.4.4",
     "@babel/preset-env": "^7.4.4",
     "@babel/preset-react": "^7.0.0",
     "babel-loader": "^8.0.6",
