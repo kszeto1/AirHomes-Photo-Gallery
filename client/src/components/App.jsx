@@ -48,7 +48,7 @@ class App extends React.Component {
       if (!clickedGrid) {
         return (<ImageGrid images={images} onClick={this.handleGridClick} />);
       }
-      return (<Carousel onClick={this.handleGridClick} />);
+      return (<Carousel handleClick={this.handleGridClick} />);
     }
     return (<div />);
   }
