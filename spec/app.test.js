@@ -21,7 +21,6 @@ describe('App Component Test Suite', () => {
 
   it('Renders Image Grid component', () => {
     const wrapper = shallow(<ImageGrid />);
-    expect()
   //   const wrapper = shallow(<App />);
   //   expect(App.prototype.componentDidMount).to.have.property('callCount', 1);
   //   App.prototype.componentDidMount.restore();

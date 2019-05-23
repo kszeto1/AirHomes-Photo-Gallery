@@ -1,6 +1,5 @@
 import React from 'react';
 import Axios from 'axios';
-import styled from 'styled-components';
 import ImageGrid from './ImageGrid.jsx';
 import Carousel from './Carousel.jsx';
 
