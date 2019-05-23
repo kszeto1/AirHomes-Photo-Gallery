@@ -132,8 +132,24 @@ const Frame = styled.div`
   height: 100% !important;
 `;
 
+const CurrentPhotoFrame = styled.div`
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+`;
+
+const CurrentPhoto = styled.img`
+  width: 804px;
+  height: 538px;
+  background-position: 50% 50%;
+  background-size: cover;
+`;
+
 const Carousel = (props) => {
   const { handleClick } = props;
+  const { currentPhoto } = props;
+  console.log(props.images);
   return (
     <div>
       <GlobalStyle />
@@ -162,6 +178,9 @@ const Carousel = (props) => {
               </NextSvg>
             </RightArrowButton>
           </ArrowAndImageContainer>
+          <CurrentPhotoFrame>
+            <CurrentPhoto src={currentPhoto.currentSrc} alt="currentPhoto" />
+          </CurrentPhotoFrame>
         </span>
       </Frame>
     </div>

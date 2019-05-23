@@ -10,6 +10,7 @@ class App extends React.Component {
       images: null,
       hasLoaded: false,
       clickedGrid: false,
+      clickedPhoto: null,
     };
     this.getAll = this.getAll.bind(this);
     this.handleGridClick = this.handleGridClick.bind(this);
@@ -34,20 +35,28 @@ class App extends React.Component {
 
   handleGridClick(event) {
     this.setState({ clickedGrid: !(this.state.clickedGrid) });
+    this.setState({ clickedPhoto: event.target });
     event.preventDefault();
   }
+
+  // handlePhotoClick(event) {
+  //   this.setState({})
+  // }
 
   render() {
     // console.log('state:', this.state.images);
     const { images } = this.state;
     const { hasLoaded } = this.state;
     const { clickedGrid } = this.state;
+    const { clickedPhoto } = this.state;
 
     if (hasLoaded) {
       if (!clickedGrid) {
         return (<ImageGrid images={images} onClick={this.handleGridClick} />);
       }
-      return (<Carousel handleClick={this.handleGridClick} />);
+      return (
+        <Carousel currentPhoto={clickedPhoto} images={images} handleClick={this.handleGridClick} />
+      );
     }
     return (<div />);
   }
