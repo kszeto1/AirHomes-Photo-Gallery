@@ -1,16 +1,14 @@
 const request = require('supertest');
-const app = require('../server/index.js');
+const app = require('../server/app');
 
-describe('GET /photoGallery', () => {
-  it('respond with json containing listing data',
-    () => request(app)
-      .get('/photoGallery')
-      .expect('Content-Type', /json/)
-      .expect(200)
-      .then((res) => {
-        const listing = res.body[0];
-        expect(listing).toBeDefined();
-        expect(listing).toHaveProperty('imageUrl');
-        expect(listing.imageUrl.length).toBeGreaterThan(0);
-      }));
+describe('API Test', () => {
+  test('GET /photoGallery', async () => {
+    const response = await request(app).get('/photoGallery');
+    expect(response.statusCode).toBe(200);
+    const listingObj = response.body[0];
+    expect(listingObj).toHaveProperty('listingId');
+    expect(listingObj).toHaveProperty('imageUrl');
+    expect(listingObj).toHaveProperty('caption');
+    expect(listingObj).toHaveProperty('verified');
+  });
 });
