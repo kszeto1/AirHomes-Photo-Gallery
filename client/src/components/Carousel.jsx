@@ -1,5 +1,6 @@
 import React from 'react';
 import styled, { createGlobalStyle } from 'styled-components';
+import ThumbnailSlider from './ThumbnailSlider.jsx';
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -149,7 +150,7 @@ const CurrentPhoto = styled.img`
 const Carousel = (props) => {
   const { handleClick } = props;
   const { currentPhoto } = props;
-  console.log(props.images);
+  const { images } = props;
   return (
     <div>
       <GlobalStyle />
@@ -182,6 +183,7 @@ const Carousel = (props) => {
             <CurrentPhoto src={currentPhoto.currentSrc} alt="currentPhoto" />
           </CurrentPhotoFrame>
         </span>
+        <ThumbnailSlider images={images} />
       </Frame>
     </div>
   );
