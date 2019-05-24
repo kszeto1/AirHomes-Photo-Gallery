@@ -6,7 +6,7 @@ import ImageGrid from '../client/src/components/ImageGrid.jsx';
 
 
 describe('App Component Test Suite', () => {
-  it('App component should be defined', () => {
+  it('App component should be defined and contains hasLoaded state', () => {
     expect(App).toBeDefined();
     const wrapper = shallow(<App />);
     expect(wrapper.state().hasLoaded).toBe(true);
