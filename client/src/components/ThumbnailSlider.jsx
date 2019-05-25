@@ -15,22 +15,37 @@ const SliderContainer = styled.div`
   overflow: hidden !important;
   border-radius: 0px !important;
   margin-bottom: 24px;
-  width: 11110px !important;
 
-  max-width: 105vh !important;
+  width: 11110px !important;
   margin-left: auto !important;
   margin-right: auto !important;
   overflow: hidden !important;
 `;
-const ThumbnailSlider = (props) => {
-  const { images } = props;
-  const imageUrlList = images[0].imageUrl;
-  console.log('imageUrlList:', imageUrlList);
-  return (
-    <SliderContainer>
-      {imageUrlList.map((url) => { return <ThumbnailItem photo={url} />; })}
-    </SliderContainer>
-  );
-};
+
+const UnorderedList = styled.ul`
+  list-style-type: none;
+`;
+class ThumbnailSlider extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+
+    };
+  }
+
+  render() {
+    const { images } = this.props;
+    console.log('thumbnailslider:', { images });
+    const imageUrlList = { images }.images;
+    console.log('imageurllist', imageUrlList);
+    return (
+      <SliderContainer>
+        <UnorderedList>
+          {imageUrlList.map((url) => { return <ThumbnailItem photo={url} />; })}
+        </UnorderedList>
+      </SliderContainer>
+    );
+  }
+}
 
 export default ThumbnailSlider;

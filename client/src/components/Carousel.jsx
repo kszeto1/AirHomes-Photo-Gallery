@@ -141,51 +141,77 @@ const CurrentPhotoFrame = styled.div`
 `;
 
 const CurrentPhoto = styled.img`
-  width: 804px;
-  height: 538px;
+  max-width: 100%;
+  height: 470px;
+  object-fit: cover;
   background-position: 50% 50%;
   background-size: cover;
 `;
 
-const Carousel = (props) => {
-  const { handleClick } = props;
-  const { currentPhoto } = props;
-  const { images } = props;
-  return (
-    <div>
-      <GlobalStyle />
-      <CloseButtonDiv>
-        <Button>
-          <CloseSvg viewBox="0 0 24 24" role="img" aria-label="Close" focusable="false" onClick={handleClick}>
-            <path d="m23.25 24c-.19 0-.38-.07-.53-.22l-10.72-10.72-10.72 10.72c-.29.29-.77.29-1.06 0s-.29-.77 0-1.06l10.72-10.72-10.72-10.72c-.29-.29-.29-.77 0-1.06s.77-.29 1.06 0l10.72 10.72 10.72-10.72c.29-.29.77-.29 1.06 0s .29.77 0 1.06l-10.72 10.72 10.72 10.72c.29.29.29.77 0 1.06-.15.15-.34.22-.53.22" fillRule="evenodd" />
-          </CloseSvg>
-        </Button>
-      </CloseButtonDiv>
+class Carousel extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      currentImage: this.props.currentPhoto.currentSrc,
+      images: this.props.images[0].imageUrl,
+    };
+    this.handleRightArrowClick = this.handleRightArrowClick.bind(this);
+  }
 
-      <Frame>
-        <TableRow>
-          <HeaderDiv />
-        </TableRow>
-        <span>
-          <ArrowAndImageContainer>
-            <LeftArrowButton aria-label="Previous">
-              <PreviousSvg viewBox="0 0 18 18" role="presentation" aria-hidden="true" focusable="false">
-                <path d="m13.7 16.29a1 1 0 1 1 -1.42 1.41l-8-8a1 1 0 0 1 0-1.41l8-8a1 1 0 1 1 1.42 1.41l-7.29 7.29z" fillRule="evenodd" />
-              </PreviousSvg>
-            </LeftArrowButton>
-            <RightArrowButton>
-              <NextSvg viewBox="0 0 18 18" role="presentation" aria-hidden="true" focusable="false">
-                <path d="m4.29 1.71a1 1 0 1 1 1.42-1.41l8 8a1 1 0 0 1 0 1.41l-8 8a1 1 0 1 1 -1.42-1.41l7.29-7.29z" fillRule="evenodd" />
-              </NextSvg>
-            </RightArrowButton>
-          </ArrowAndImageContainer>
-          <CurrentPhotoFrame>
-            <CurrentPhoto src={currentPhoto.currentSrc} alt="currentPhoto" />
-          </CurrentPhotoFrame>
-        </span>
-        <ThumbnailSlider images={images} />
-      </Frame>
-    </div>
-  );
+  handleRightArrowClick(event) {
+    const { images } = this.state;
+    const { currentImage } = this.state;
+    const nextImagePosition = { images }.images.indexOf({ currentImage }.currentImage) + 1;
+    console.log('nextImagePosition', nextImagePosition);
+    const nextImage = { images }.images[nextImagePosition];
+    console.log('nextImage', nextImage);
+    if (nextImage !== undefined) {
+      this.setState({ currentImage: nextImage });
+    } else {
+      this.setState({ currentImage: { images }.images[0] });
+    }
+    event.preventDefault();
+  }
+
+  render() {
+    const { handleClick } = this.props;
+    const { currentImage } = this.state;
+    const { images } = this.state;
+    return (
+      <div>
+        <GlobalStyle />
+        <CloseButtonDiv>
+          <Button>
+            <CloseSvg viewBox="0 0 24 24" role="img" aria-label="Close" focusable="false" onClick={handleClick}>
+              <path d="m23.25 24c-.19 0-.38-.07-.53-.22l-10.72-10.72-10.72 10.72c-.29.29-.77.29-1.06 0s-.29-.77 0-1.06l10.72-10.72-10.72-10.72c-.29-.29-.29-.77 0-1.06s.77-.29 1.06 0l10.72 10.72 10.72-10.72c.29-.29.77-.29 1.06 0s .29.77 0 1.06l-10.72 10.72 10.72 10.72c.29.29.29.77 0 1.06-.15.15-.34.22-.53.22" fillRule="evenodd" />
+            </CloseSvg>
+          </Button>
+        </CloseButtonDiv>
+        <Frame>
+          <TableRow>
+            <HeaderDiv />
+          </TableRow>
+          <span>
+            <ArrowAndImageContainer>
+              <LeftArrowButton aria-label="Previous">
+                <PreviousSvg viewBox="0 0 18 18" role="presentation" aria-hidden="true" focusable="false">
+                  <path d="m13.7 16.29a1 1 0 1 1 -1.42 1.41l-8-8a1 1 0 0 1 0-1.41l8-8a1 1 0 1 1 1.42 1.41l-7.29 7.29z" fillRule="evenodd" />
+                </PreviousSvg>
+              </LeftArrowButton>
+              <RightArrowButton>
+                <NextSvg viewBox="0 0 18 18" role="presentation" aria-hidden="true" focusable="false" onClick={this.handleRightArrowClick}>
+                  <path d="m4.29 1.71a1 1 0 1 1 1.42-1.41l8 8a1 1 0 0 1 0 1.41l-8 8a1 1 0 1 1 -1.42-1.41l7.29-7.29z" fillRule="evenodd" />
+                </NextSvg>
+              </RightArrowButton>
+            </ArrowAndImageContainer>
+            <CurrentPhotoFrame>
+              <CurrentPhoto src={currentImage} alt="currentPhoto" />
+            </CurrentPhotoFrame>
+          </span>
+          <ThumbnailSlider images={images} currentPhoto={currentImage} />
+        </Frame>
+      </div>
+    );
+  }
 };
 export default Carousel;

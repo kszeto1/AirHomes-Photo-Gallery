@@ -9,11 +9,13 @@ const ListItem = styled.li`
   float: left !important;
   background-color: rgb(0, 0, 0) !important;
   margin-left: 10px !important;
+  opacity: 0.5;
+  
 `;
 
 const ListButton = styled.button`
   font-weight: inherit !important;
-  opacity: 0.5 !important;
+  
   backface-visibility: hidden !important;
   position: relative !important;
   display: inline-block !important;
@@ -46,7 +48,6 @@ const ListImg = styled.img`
 }
 `;
 const ThumbnailItem = (props) => {
-  console.log(props.photo);
   const { photo } = props;
   return (
     <ListItem>
