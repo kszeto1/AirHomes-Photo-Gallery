@@ -156,19 +156,32 @@ class Carousel extends React.Component {
       images: this.props.images[0].imageUrl,
     };
     this.handleRightArrowClick = this.handleRightArrowClick.bind(this);
+    this.handleLeftArrowClick = this.handleLeftArrowClick.bind(this);
   }
 
   handleRightArrowClick(event) {
     const { images } = this.state;
     const { currentImage } = this.state;
     const nextImagePosition = { images }.images.indexOf({ currentImage }.currentImage) + 1;
-    console.log('nextImagePosition', nextImagePosition);
     const nextImage = { images }.images[nextImagePosition];
-    console.log('nextImage', nextImage);
     if (nextImage !== undefined) {
       this.setState({ currentImage: nextImage });
     } else {
       this.setState({ currentImage: { images }.images[0] });
+    }
+    event.preventDefault();
+  }
+
+  handleLeftArrowClick(event) {
+    const { images } = this.state;
+    const { currentImage } = this.state;
+    const previousImagePosition = { images }.images.indexOf({ currentImage }.currentImage) - 1;
+    const previousImage = { images }.images[previousImagePosition];
+    const imagesListLength = { images }.images.length;
+    if (previousImage !== undefined) {
+      this.setState({ currentImage: previousImage });
+    } else {
+      this.setState({ currentImage: { images }.images[imagesListLength - 1] });
     }
     event.preventDefault();
   }
@@ -194,7 +207,7 @@ class Carousel extends React.Component {
           <span>
             <ArrowAndImageContainer>
               <LeftArrowButton aria-label="Previous">
-                <PreviousSvg viewBox="0 0 18 18" role="presentation" aria-hidden="true" focusable="false">
+                <PreviousSvg viewBox="0 0 18 18" role="presentation" aria-hidden="true" focusable="false" onClick={this.handleLeftArrowClick}>
                   <path d="m13.7 16.29a1 1 0 1 1 -1.42 1.41l-8-8a1 1 0 0 1 0-1.41l8-8a1 1 0 1 1 1.42 1.41l-7.29 7.29z" fillRule="evenodd" />
                 </PreviousSvg>
               </LeftArrowButton>
@@ -213,5 +226,5 @@ class Carousel extends React.Component {
       </div>
     );
   }
-};
+}
 export default Carousel;

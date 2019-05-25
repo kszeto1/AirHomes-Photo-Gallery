@@ -35,9 +35,7 @@ class ThumbnailSlider extends React.Component {
 
   render() {
     const { images } = this.props;
-    console.log('thumbnailslider:', { images });
     const imageUrlList = { images }.images;
-    console.log('imageurllist', imageUrlList);
     return (
       <SliderContainer>
         <UnorderedList>
