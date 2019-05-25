@@ -204,7 +204,7 @@ class Carousel extends React.Component {
           <TableRow>
             <HeaderDiv />
           </TableRow>
-          <span>
+          <TableRow>
             <ArrowAndImageContainer>
               <LeftArrowButton aria-label="Previous">
                 <PreviousSvg viewBox="0 0 18 18" role="presentation" aria-hidden="true" focusable="false" onClick={this.handleLeftArrowClick}>
@@ -220,7 +220,7 @@ class Carousel extends React.Component {
             <CurrentPhotoFrame>
               <CurrentPhoto src={currentImage} alt="currentPhoto" />
             </CurrentPhotoFrame>
-          </span>
+          </TableRow>
           <ThumbnailSlider images={images} currentPhoto={currentImage} />
         </Frame>
       </div>
