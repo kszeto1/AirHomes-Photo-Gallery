@@ -43,22 +43,19 @@ const UnorderedList = styled.ul`
   padding: 0px !important;
 `;
 class ThumbnailSlider extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-
-    };
-  }
-
   render() {
     const { images } = this.props;
     const imageUrlList = { images }.images;
+    const { currentPhoto } = this.props;
+    console.log('currentphoto from slider', currentPhoto);
     return (
       <SliderContainer>
         <OuterContainer>
           <UnorderedListContainer>
             <UnorderedList>
-              {imageUrlList.map((url) => { return <ThumbnailItem photo={url} />; })}
+              {imageUrlList.map((url) => {
+                return <ThumbnailItem photo={url} currentPhoto={currentPhoto} />;
+              })}
             </UnorderedList>
           </UnorderedListContainer>
         </OuterContainer>

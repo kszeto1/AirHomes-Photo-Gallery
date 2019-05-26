@@ -10,7 +10,10 @@ const ListItem = styled.li`
   background-color: rgb(0, 0, 0) !important;
   margin-left: 10px !important;
   opacity: 0.5;
-  
+`;
+
+const ActiveListItem = styled(ListItem)`
+  opacity: 1;
 `;
 
 const ListButton = styled.button`
@@ -49,6 +52,17 @@ const ListImg = styled.img`
 `;
 const ThumbnailItem = (props) => {
   const { photo } = props;
+  const { currentPhoto } = props;
+  console.log('currentPhoto from thumbnailitem', currentPhoto);
+  if (photo === currentPhoto) {
+    return (
+      <ActiveListItem>
+        <ListButton>
+          <ListImg src={photo} />
+        </ListButton>
+      </ActiveListItem>
+    );
+  }
   return (
     <ListItem>
       <ListButton>
