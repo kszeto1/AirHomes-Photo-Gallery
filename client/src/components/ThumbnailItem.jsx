@@ -53,7 +53,6 @@ const ListImg = styled.img`
 const ThumbnailItem = (props) => {
   const { photo } = props;
   const { currentPhoto } = props;
-  console.log('currentPhoto from thumbnailitem', currentPhoto);
   if (photo === currentPhoto) {
     return (
       <ActiveListItem>
