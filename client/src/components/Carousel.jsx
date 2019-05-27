@@ -154,34 +154,42 @@ class Carousel extends React.Component {
     this.state = {
       currentImage: this.props.currentPhoto.currentSrc,
       images: this.props.images[0].imageUrl,
+      transform: 0,
     };
     this.handleRightArrowClick = this.handleRightArrowClick.bind(this);
     this.handleLeftArrowClick = this.handleLeftArrowClick.bind(this);
   }
 
   handleRightArrowClick(event) {
-    const { images } = this.state;
-    const { currentImage } = this.state;
-    const nextImagePosition = { images }.images.indexOf({ currentImage }.currentImage) + 1;
-    const nextImage = { images }.images[nextImagePosition];
+    const { images, currentImage, transform } = this.state;
+    const nextImagePosition = images.indexOf({ currentImage }.currentImage) + 1;
+    const nextImage = images[nextImagePosition];
+    let transformed;
     if (nextImage !== undefined) {
-      this.setState({ currentImage: nextImage });
+      transformed = transform - 110;
+      this.setState({ currentImage: nextImage, transform: transformed });
     } else {
-      this.setState({ currentImage: { images }.images[0] });
+      transformed = 280;
+      this.setState({ currentImage: images[0], transform: transformed });
     }
     event.preventDefault();
   }
 
   handleLeftArrowClick(event) {
-    const { images } = this.state;
-    const { currentImage } = this.state;
+    const { images, currentImage, transform } = this.state;
     const previousImagePosition = { images }.images.indexOf({ currentImage }.currentImage) - 1;
     const previousImage = { images }.images[previousImagePosition];
     const imagesListLength = { images }.images.length;
+    let transformed;
     if (previousImage !== undefined) {
-      this.setState({ currentImage: previousImage });
+      transformed = transform + 110;
+      this.setState({ currentImage: previousImage, transform: transformed });
     } else {
-      this.setState({ currentImage: { images }.images[imagesListLength - 1] });
+      transformed = (images.length * -110) + 380;
+      this.setState({
+        currentImage: { images }.images[imagesListLength - 1],
+        transform: transformed,
+      });
     }
     event.preventDefault();
   }
@@ -190,6 +198,7 @@ class Carousel extends React.Component {
     const { handleClick } = this.props;
     const { currentImage } = this.state;
     const { images } = this.state;
+    const { transform } = this.state;
     return (
       <div>
         <GlobalStyle />
@@ -221,7 +230,7 @@ class Carousel extends React.Component {
               <CurrentPhoto src={currentImage} alt="currentPhoto" />
             </CurrentPhotoFrame>
           </TableRow>
-          <ThumbnailSlider images={images} currentPhoto={currentImage} />
+          <ThumbnailSlider images={images} currentPhoto={currentImage} transform={transform} />
         </Frame>
       </div>
     );

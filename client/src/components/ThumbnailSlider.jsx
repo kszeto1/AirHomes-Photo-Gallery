@@ -33,32 +33,49 @@ const UnorderedListContainer = styled.div`
   position: relative !important;
   width: 11110px !important;
 `;
-const UnorderedList = styled.ul`
 
+const UnorderedList = styled.ul`
   position: relative !important;
   list-style-type: none !important;
   left: 0px !important;
-  transition: -ms-transform 0.3s ease-out 0s, -webkit-transform 0.3s ease-out 0s, transform 0.3s ease-out 0s !important;
   margin: 0px !important;
   padding: 0px !important;
+  `;
+
+const ShiftedSlider = styled(UnorderedList)`
+  transition: -ms-transform 0.3s ease-out 0s, -webkit-transform 0.3s ease-out 0s, transform 0.3s ease-out 0s !important;
+  transform: translateX(${(props) => { return props.transform; }}px);
 `;
+
 class ThumbnailSlider extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-
-    };
-  }
-
   render() {
-    const { images } = this.props;
+    const { images, currentPhoto, transform } = this.props;
     const imageUrlList = { images }.images;
+    const currentPhotoIndex = imageUrlList.indexOf(currentPhoto);
+    if (currentPhotoIndex > 3) {
+      console.log('thumbnailslider', transform);
+      return (
+        <SliderContainer>
+          <OuterContainer>
+            <UnorderedListContainer>
+              <ShiftedSlider transform={transform}>
+                {imageUrlList.map((url) => {
+                  return <ThumbnailItem photo={url} currentPhoto={currentPhoto} />;
+                })}
+              </ShiftedSlider>
+            </UnorderedListContainer>
+          </OuterContainer>
+        </SliderContainer>
+      );
+    }
     return (
       <SliderContainer>
         <OuterContainer>
           <UnorderedListContainer>
             <UnorderedList>
-              {imageUrlList.map((url) => { return <ThumbnailItem photo={url} />; })}
+              {imageUrlList.map((url) => {
+                return <ThumbnailItem photo={url} currentPhoto={currentPhoto} />;
+              })}
             </UnorderedList>
           </UnorderedListContainer>
         </OuterContainer>
