@@ -128,9 +128,10 @@ const NextSvg = styled.svg`
   fill: rgb(255, 255, 255);
 `;
 const Frame = styled.div`
-  display: table !important;
+  display: flex !important;
   width: 100% !important;
   height: 100% !important;
+  flex-direction: column;
 `;
 
 const CurrentPhotoFrame = styled.div`
@@ -148,13 +149,33 @@ const CurrentPhoto = styled.img`
   background-size: cover;
 `;
 
+const CarouselContainer = styled.div`
+  display: flex;
+  z-index: 2;
+`;
+
+const CaptionDiv = styled.div`
+  font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif;
+  font-size: 14px;
+  font-weight: 200;
+  position: absolute;
+  z-index: 2;
+  bottom: 15%;
+  left: 25%;
+  color: white;
+`;
+
 class Carousel extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       currentImage: this.props.currentPhoto.currentSrc,
       images: this.props.images[0].imageUrl,
+      // TODO: on first iteration, have to transform slider little bit differently
+      // keep track if first iteration
       transform: 0,
+      // TODO: load captions below main picture
+      captions: this.props.captions,
     };
     this.handleRightArrowClick = this.handleRightArrowClick.bind(this);
     this.handleLeftArrowClick = this.handleLeftArrowClick.bind(this);
@@ -195,17 +216,19 @@ class Carousel extends React.Component {
   }
 
   render() {
-    const { handleClick } = this.props;
+    const { handleClick, captions } = this.props;
     const { currentImage } = this.state;
     const { images } = this.state;
     const { transform } = this.state;
+    const currentImagePosition = images.indexOf(currentImage) + 1;
+    const imagesLength = images.length;
     return (
-      <div>
+      <CarouselContainer>
         <GlobalStyle />
         <CloseButtonDiv>
           <Button>
             <CloseSvg viewBox="0 0 24 24" role="img" aria-label="Close" focusable="false" onClick={handleClick}>
-              <path d="m23.25 24c-.19 0-.38-.07-.53-.22l-10.72-10.72-10.72 10.72c-.29.29-.77.29-1.06 0s-.29-.77 0-1.06l10.72-10.72-10.72-10.72c-.29-.29-.29-.77 0-1.06s.77-.29 1.06 0l10.72 10.72 10.72-10.72c.29-.29.77-.29 1.06 0s .29.77 0 1.06l-10.72 10.72 10.72 10.72c.29.29.29.77 0 1.06-.15.15-.34.22-.53.22" fillRule="evenodd" />
+              <path d="m23.25 24c-.19   0-.38-.07-.53-.22l-10.72-10.72-10.72 10.72c-.29.29-.77.29-1.06 0s-.29-.77 0-1.06l10.72-10.72-10.72-10.72c-.29-.29-.29-.77 0-1.06s.77-.29 1.06 0l10.72 10.72 10.72-10.72c.29-.29.77-.29 1.06 0s .29.77 0 1.06l-10.72 10.72 10.72 10.72c.29.29.29.77 0 1.06-.15.15-.34.22-.53.22" fillRule="evenodd" />
             </CloseSvg>
           </Button>
         </CloseButtonDiv>
@@ -230,9 +253,12 @@ class Carousel extends React.Component {
               <CurrentPhoto src={currentImage} alt="currentPhoto" />
             </CurrentPhotoFrame>
           </TableRow>
+          <CaptionDiv>
+            {`${currentImagePosition}/${imagesLength}: ${captions[Math.floor(Math.random() * captions.length)]}`}
+          </CaptionDiv>
           <ThumbnailSlider images={images} currentPhoto={currentImage} transform={transform} />
         </Frame>
-      </div>
+      </CarouselContainer>
     );
   }
 }

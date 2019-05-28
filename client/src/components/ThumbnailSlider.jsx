@@ -40,10 +40,10 @@ const UnorderedList = styled.ul`
   left: 0px !important;
   margin: 0px !important;
   padding: 0px !important;
+  transition: -ms-transform 0.3s ease-out 0s, -webkit-transform 0.3s ease-out 0s, transform 0.3s ease-out 0s !important;
   `;
 
 const ShiftedSlider = styled(UnorderedList)`
-  transition: -ms-transform 0.3s ease-out 0s, -webkit-transform 0.3s ease-out 0s, transform 0.3s ease-out 0s !important;
   transform: translateX(${(props) => { return props.transform; }}px);
 `;
 
@@ -53,7 +53,6 @@ class ThumbnailSlider extends React.Component {
     const imageUrlList = { images }.images;
     const currentPhotoIndex = imageUrlList.indexOf(currentPhoto);
     if (currentPhotoIndex > 3) {
-      console.log('thumbnailslider', transform);
       return (
         <SliderContainer>
           <OuterContainer>

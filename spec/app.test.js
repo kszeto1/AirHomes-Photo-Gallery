@@ -9,7 +9,7 @@ describe('App Component Test Suite', () => {
   it('App component should be defined and contains hasLoaded state', () => {
     expect(App).toBeDefined();
     const wrapper = shallow(<App />);
-    expect(wrapper.state().hasLoaded).toBe(true);
+    expect(wrapper.state().hasLoaded).toBe(false);
   });
 
   // it('simulates click events', () => {
@@ -19,10 +19,9 @@ describe('App Component Test Suite', () => {
   //   expect(onButtonClick).to.have.property('callCount', 1);
   // });
 
-  it('Renders Image Grid component', () => {
-    const wrapper = shallow(<ImageGrid />);
-  //   const wrapper = shallow(<App />);
+  // it('Renders Image Grid component', () => {
+  // const wrapper = shallow(<ImageGrid />);
   //   expect(App.prototype.componentDidMount).to.have.property('callCount', 1);
   //   App.prototype.componentDidMount.restore();
-  });
+  // });
 });
